@@ -3,7 +3,9 @@ pipeline:
     image: openjdk:8
     commands:
       - ./gradlew clean build
+      - ./gradlew lint
       - ./gradlew test
+
     when:
      branch: master
   publish:
