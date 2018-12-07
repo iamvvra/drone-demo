@@ -15,3 +15,13 @@ pipeline:
       - "commit_${DRONE_COMMIT}"
       - "build_${DRONE_BUILD_NUMBER}"
       - "${DRONE_BUILD_NUMBER}"
+  deploy:
+    image: quay.io/hectorqin/drone-kubectl
+    kubernetes_template: k8s/deployment.yaml
+    kubernetes_namespace: dev-space
+    secrets: 
+      - kubernetes_server
+      - kubernetes_token
+      - kubernetes_cert
+    when:
+      branch: master
