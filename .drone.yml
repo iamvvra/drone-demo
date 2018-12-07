@@ -3,4 +3,4 @@ pipeline:
     image: openjdk:8
     commands:
       - ./gradlew clean build
-      - ./gradle test
+      - ./gradlew test
