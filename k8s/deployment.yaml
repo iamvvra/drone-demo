@@ -22,8 +22,8 @@ metadata:
   labels:
     region: "dev"
     app: "sb-drone-demo"
-    repo: ${DRONE_REPO_NAME}
-    commit: ${DRONE_COMMIT_SHA}
+    repo: "${DRONE_REPO_NAME}"
+    commit: "${DRONE_COMMIT_SHA}"
     build: "build_7"
 spec:
   replicas: 1
