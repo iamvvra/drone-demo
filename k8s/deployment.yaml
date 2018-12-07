@@ -1,7 +1,7 @@
-apiVersion: "apps/v1"
+apiVersion: "v1"
 kind: "Service"
 metadata:
-  name: "sb-drone-demo-service"
+  name: "drone-demo-service"
   namespace: "dev"
   labels:
     region: "dev"
@@ -11,17 +11,17 @@ spec:
       targetPort: 8080
       name: http
   selector:
-      app: "sb-drone-demo"
+      app: "drone-demo"
   type: ClusterIP
 ---
-apiVersion: "apps/v1"
+apiVersion: "v1"
 kind: "Deployment"
 metadata:
-  name: "sb-drone-demo"
+  name: "drone-demo"
   namespace: "dev"
   labels:
     region: "dev"
-    app: "sb-drone-demo"
+    app: "drone-demo"
     repo: "${DRONE_REPO_NAME}"
     commit: "${DRONE_COMMIT_SHA}"
     build: "build_7"
@@ -34,10 +34,10 @@ spec:
     metadata:
       labels:
         region: "dev"
-        app: "sb-drone-demo"
+        app: "drone-demo"
     spec:
       containers:
-      - name: "sb-drone-demo"
+      - name: "drone-demo"
         image: "567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo:build_7"
         ports:
           - containerPort: 8080
