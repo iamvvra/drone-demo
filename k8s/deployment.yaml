@@ -1,0 +1,50 @@
+# ---
+# apiVersion: v1
+# kind: Namespace
+# metadata:
+#   name: dev-space
+---
+apiVersion: "v1"
+kind: "Service"
+metadata:
+  name: "drone-demo-service"
+  namespace: "dev"
+  labels:
+    region: "dev"
+    version: 1.0.0
+spec:
+  ports:
+    - port: 8080
+      targetPort: 8080
+      name: http
+  selector:
+      app: "drone-demo"
+  type: ClusterIP
+---
+apiVersion: "extensions/v1beta1"
+kind: "Deployment"
+metadata:
+  name: "dronedemo"
+  namespace: "dev"
+  labels:
+    region: "dev"
+    app: "drone-demo"
+    repo: ${DRONE_REPO_NAME}
+    commit: ${DRONE_COMMIT_SHA}
+    build: "build_${DRONE_BUILD_NUMBER}"
+spec:
+  replicas: 1
+  # selector:
+  #   matchLabels:
+  #     region: "dev"
+  template:
+    metadata:
+      labels:
+        region: "dev"
+        app: "drone-demo"
+    spec:
+      containers:
+      - name: "drone-demo"
+        image: "567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo:build_${DRONE_BUILD_NUMBER}"
+        ports:
+          - containerPort: 8080
