@@ -17,7 +17,7 @@ pipeline:
   #     - "${DRONE_BUILD_NUMBER}"
   deploy:
     image: quay.io/hectorqin/drone-kubectl
-    kubernetes_template: k8s/deployment.yaml
+    kubernetes_template: ./k8s/deployment.yaml
     kubernetes_namespace: dev
     secrets: 
       - kubernetes_server
