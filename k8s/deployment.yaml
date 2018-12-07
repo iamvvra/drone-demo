@@ -16,7 +16,7 @@ spec:
       app: "drone-demo"
   type: ClusterIP
 ---
-apiVersion: apps/v1beta1
+apiVersion: extensions/v1beta1
 kind: "Deployment"
 metadata:
   name: "drone-demo"
