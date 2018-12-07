@@ -1,20 +1,20 @@
 pipeline:
-  build:
-    image: openjdk:8
-    commands:
-      - ./gradlew clean build
-      - ./gradlew test
-  publish:
-    image: plugins/ecr
-    repo: 567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo
-    registry: 567651206748.dkr.ecr.us-east-1.amazonaws.com
-    region: us-east-1
-    secrets: [ ecr_access_key, ecr_secret_key ]
-    tags:
-      - "latest"
-      - "commit_${DRONE_COMMIT}"
-      - "build_${DRONE_BUILD_NUMBER}"
-      - "${DRONE_BUILD_NUMBER}"
+  # build:
+  #   image: openjdk:8
+  #   commands:
+  #     - ./gradlew clean build
+  #     - ./gradlew test
+  # publish:
+  #   image: plugins/ecr
+  #   repo: 567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo
+  #   registry: 567651206748.dkr.ecr.us-east-1.amazonaws.com
+  #   region: us-east-1
+  #   secrets: [ ecr_access_key, ecr_secret_key ]
+  #   tags:
+  #     - "latest"
+  #     - "commit_${DRONE_COMMIT}"
+  #     - "build_${DRONE_BUILD_NUMBER}"
+  #     - "${DRONE_BUILD_NUMBER}"
   deploy:
     image: quay.io/hectorqin/drone-kubectl
     kubernetes_template: k8s/deployment.yaml

@@ -24,7 +24,7 @@ spec:
 apiVersion: "extensions/v1beta1"
 kind: "Deployment"
 metadata:
-  name: "dronedemo"
+  name: "drone-demo"
   namespace: "dev"
   labels:
     region: "dev"
@@ -45,6 +45,6 @@ spec:
     spec:
       containers:
       - name: "drone-demo"
-        image: "567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo:build_${DRONE_BUILD_NUMBER}"
+        image: "567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo:commit_42a0b5360d184b356741eb6d08963014ac8f91e7"
         ports:
           - containerPort: 8080
