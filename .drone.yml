@@ -22,7 +22,7 @@ pipeline:
     debug: true
     secrets: 
       - kubernetes_server
-      - KUBERNETES_TOKEN
-      - KUBERNETES_CERT
+      - kubernetes_cert
+      - kubernetes_token
     when:
       branch: master
