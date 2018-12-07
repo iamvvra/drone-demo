@@ -19,7 +19,7 @@ pipeline:
     image: quay.io/hectorqin/drone-kubectl
     kubernetes_template: /k8s/deployment.yaml
     kubernetes_namespace: dev
-    debug: true
+    # debug: true
     secrets: 
       - kubernetes_server
       - kubernetes_token
