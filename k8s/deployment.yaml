@@ -5,16 +5,18 @@ metadata:
   namespace: "dev"
   labels:
     region: "dev"
+    app: "drone-demo"
 spec:
   ports:
     - port: 8080
       targetPort: 8080
       name: http
   selector:
+      region: "dev"
       app: "drone-demo"
   type: ClusterIP
 ---
-apiVersion: v1
+apiVersion: apps/v1
 kind: "Deployment"
 metadata:
   name: "drone-demo"
@@ -23,18 +25,18 @@ metadata:
     region: "dev"
     app: "drone-demo"
 spec:
+  selector:
+    matchLabels:
+      app: "drone-demo"
   replicas: 1
-  # selector:
-  #   matchLabels:
-  #     region: "dev"
   template:
     metadata:
       labels:
-        region: "dev"
         app: "drone-demo"
     spec:
       containers:
-      - name: "drone-demo"
+      - name: drone-demo
         image: "567651206748.dkr.ecr.us-east-1.amazonaws.com/drone-demo:latest"
+        imagePullPolicy: Always
         ports:
           - containerPort: 8080
