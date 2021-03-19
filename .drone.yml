@@ -10,7 +10,8 @@ pipeline:
     image: plugins/docker
     repo: vijayraghavan08/drone-demo
     username: vijayraghavan08
-    password: ${docker-secret}
+    password: 
+      from_secret: docker-secret
     tags:
       - "latest"
       - "commit_${DRONE_COMMIT}"
