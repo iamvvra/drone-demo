@@ -7,7 +7,7 @@ pipeline:
     when:
      branch: master
   publish:
-    image: plugins/ecr
+    image: drone-dockerhub
     repo: vijayraghavan08/drone-demo
     tags:
       - "latest"
