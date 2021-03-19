@@ -7,8 +7,10 @@ pipeline:
     when:
      branch: master
   publish:
-    image: drone-dockerhub
+    image: plugins/docker
     repo: vijayraghavan08/drone-demo
+    username: vijayraghavan08
+    password: ${docker-secret}
     tags:
       - "latest"
       - "commit_${DRONE_COMMIT}"
